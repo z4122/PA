@@ -19,7 +19,7 @@ static void init_log() {
 }
 
 static void welcome() {
-	printf("Welcome to NEMU!\nThe executable is %s.\nFor help, type \"help\"\n",
+	printf("Welcome to NEMU!,你看到了欢迎信息\nThe executable is %s.\nFor help, type \"help\"\n",
 			exec_file);
 }
 
