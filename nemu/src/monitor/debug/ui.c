@@ -43,6 +43,7 @@ static int cmd_step(char *args)
 {
 	int num = atoi(args);
 	cpu_exec(num);
+	printf("num值为：%d",num);
 	return 0;
 }
 static int cmd_info(char *args)
