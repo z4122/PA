@@ -32,11 +32,27 @@ static int cmd_c(char *args) {
 	return 0;
 }
 
+
 static int cmd_q(char *args) {
 	return -1;
 }
 
 static int cmd_help(char *args);
+
+static int cmd_step(char *args)
+{
+	return 0;
+}
+static int cmd_info(char *args)
+{
+	return 0;
+}
+
+static int cmd_dump_mem(char *args)
+{
+	return 0;
+}
+
 
 static struct {
 	char *name;
@@ -48,7 +64,9 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 
 	/* TODO: Add more commands */
-
+	{ "s","Signal step", cmd_step},
+	{ "info","Dump information with option:r(registers)",cmd_info},
+	{ "x","Dump memory:x length addr",cmd_dump_mem},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
@@ -62,14 +80,18 @@ static int cmd_help(char *args) {
 		/* no argument given */
 		for(i = 0; i < NR_CMD; i ++) {
 			printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
+
 		}
+
 	}
+
 	else {
 		for(i = 0; i < NR_CMD; i ++) {
 			if(strcmp(arg, cmd_table[i].name) == 0) {
 				printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
 				return 0;
 			}
+
 		}
 		printf("Unknown command '%s'\n", arg);
 	}

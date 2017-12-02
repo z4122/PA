@@ -6,6 +6,8 @@
 typedef int (*helper_fun)(swaddr_t);
 static make_helper(_2byte_esc);
 
+
+//调用make_group,则定义了opcode_table_group1_b[8],八个函数指针，然后使用group1_b即可求出命令的长度
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
 	static helper_fun concat(opcode_table_, name) [8] = { \
 	/* 0x00 */	item0, item1, item2, item3, \
@@ -15,7 +17,7 @@ static make_helper(_2byte_esc);
 		ModR_M m; \
 		m.val = instr_fetch(eip + 1, 1); \
 		return concat(opcode_table_, name) [m.opcode](eip); \
-	}
+	}//concat把两个字符连接起来成为opcode——table_name
 	
 /* 0x80 */
 make_group(group1_b,
