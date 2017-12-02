@@ -42,7 +42,7 @@ static int cmd_help(char *args);
 static int cmd_step(char *args)
 {
 	unsigned int num = atoi(args);
-	cpu_exec(10);
+	cpu_exec(num);
 	printf("num值为：%d\n",num);
 	return 0;
 }
