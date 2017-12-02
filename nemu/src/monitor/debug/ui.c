@@ -67,6 +67,7 @@ static int cmd_dump_mem(char *args)
 {
 	char *num = strtok(NULL, " ");
 	char *address = strtok(NULL," ");
+
 	int l = sprintf(mem_buf,"起始地址为：%8s\n",address);
 
 	for(int i = 0;i<atoi(num);i++)
