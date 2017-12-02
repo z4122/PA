@@ -70,7 +70,7 @@ static int cmd_dump_mem(char *args)
 
 	for(int i = 0;i<10;i++)
 	{
-		l+=sprintf(mem_buf+l,"%2x ",instr_fetch((unsigned)strtol(args,NULL,2)+i,1));
+		l+=sprintf(mem_buf+l,"%02x ",instr_fetch((unsigned)strtol(args,NULL,2)+i,1));
 	}
 	printf("%s\n",mem_buf);
 	return 0;
