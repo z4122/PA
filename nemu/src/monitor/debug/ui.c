@@ -66,7 +66,7 @@ char mem_buf[100];
 static int cmd_dump_mem(char *args)
 {
 	int l = sprintf(mem_buf,"起始地址为：0x%8s\n",args);
-	printf("%d\n",(unsigned int)strtol(args,NULL,2));
+	printf("%8x\n",(unsigned int)strtol(args,NULL,2));
 
 	for(int i = 0;i<10;i++)
 	{
