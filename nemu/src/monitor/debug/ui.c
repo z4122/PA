@@ -41,7 +41,8 @@ static int cmd_help(char *args);
 
 static int cmd_step(char *args)
 {
-	cpu_exec(1);
+	int num = atoi(args);
+	cpu_exec(num);
 	return 0;
 }
 static int cmd_info(char *args)
@@ -111,7 +112,9 @@ void ui_mainloop() {
 		/* treat the remaining string as the arguments,
 		 * which may need further parsing
 		 */
+
 		char *args = cmd + strlen(cmd) + 1;
+		
 		if(args >= str_end) {
 			args = NULL;
 		}
@@ -126,7 +129,9 @@ void ui_mainloop() {
 			if(strcmp(cmd, cmd_table[i].name) == 0) {
 				if(cmd_table[i].handler(args) < 0) { return; }
 				break;
+		
 			}
+		
 		}
 
 		if(i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
