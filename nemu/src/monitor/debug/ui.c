@@ -66,11 +66,11 @@ char mem_buf[100];
 static int cmd_dump_mem(char *args)
 {
 	int l = sprintf(mem_buf,"起始地址为：0x%8s\n",args);
-	printf("%ld\n",strtol(args,NULL,2));
+	printf("%d\n",(unsigned int)strtol(args,NULL,2));
 
 	for(int i = 0;i<10;i++)
 	{
-		l+=sprintf(mem_buf+l,"%02x ",instr_fetch((unsigned int)strtol(args,NULL,2)+i,1));
+		l+=sprintf(mem_buf+l,"%02x ",instr_fetch((unsigned)strtol(args,NULL,2)+i,1));
 	}
 	printf("%s\n",mem_buf);
 	return 0;
