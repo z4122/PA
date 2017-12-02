@@ -43,11 +43,20 @@ static int cmd_step(char *args)
 {
 	unsigned int num = atoi(args);
 	cpu_exec(num);
-	printf("num值为：%d\n",num);
 	return 0;
 }
 static int cmd_info(char *args)
 {
+	switch(*args)
+	{
+		case 'r' : 
+			for(int i = R_EAX;i <= R_EDI ;i++)
+			{
+				printf("%s:0x%08x\n",regsl[i],cpu.gpr[i]._32);
+			};
+			return 0;
+		default: return 1;
+	}
 	return 0;
 }
 
