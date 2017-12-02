@@ -21,11 +21,11 @@ jmp_buf jbuf;
 
 void print_bin_instr(swaddr_t eip, int len) {
 	int i;
-	int l = sprintf(asm_buf, "%8x:   ", eip);
+	int l = sprintf(asm_buf, "0x%8x:   ", eip);//返回值为新加入的字符数，为下一次加入字符串做准备
 	for(i = 0; i < len; i ++) {
-		l += sprintf(asm_buf + l, "%02x ", instr_fetch(eip + i, 1));
+		l += sprintf(asm_buf + l, "%02x ", instr_fetch(eip + i, 1));//instr_fetch返回值是eip所在地址对应的数据
 	}
-	sprintf(asm_buf + l, "%*.s", 50 - (12 + 3 * len), "");
+	sprintf(asm_buf + l, "%*.s", 50 - (12 + 3 * len), "-");
 }
 
 /* This function will be called when an `int3' instruction is being executed. */
@@ -59,12 +59,12 @@ void cpu_exec(volatile uint32_t n) {
 
 		/* Execute one instruction, including instruction fetch,
 		 * instruction decode, and the actual execution. */
-		int instr_len = exec(cpu.eip);
+		int instr_len = exec(cpu.eip);//得出命令的长度
 
-		cpu.eip += instr_len;
+		cpu.eip += instr_len;//eip指向下一条命令
 
 #ifdef DEBUG
-		print_bin_instr(eip_temp, instr_len);
+		print_bin_instr(eip_temp, instr_len);//
 		strcat(asm_buf, assembly);
 		Log_write("%s\n", asm_buf);
 		if(n_temp < MAX_INSTR_TO_PRINT) {
