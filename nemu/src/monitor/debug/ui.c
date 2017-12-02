@@ -65,12 +65,13 @@ static int cmd_info(char *args)
 char mem_buf[100];
 static int cmd_dump_mem(char *args)
 {
-	int l = sprintf(mem_buf,"起始地址为：0x%8s\n",args);
-	printf("%8x\n",(unsigned int)strtol(args,NULL,16));
+	char *num = strtok(NULL, " ");
+	char *address = strtok(NULL," ");
+	int l = sprintf(mem_buf,"起始地址为：%8s\n",address);
 
-	for(int i = 0;i<10;i++)
+	for(int i = 0;i<atoi(num);i++)
 	{
-		l+=sprintf(mem_buf+l,"%02x ",instr_fetch((unsigned)strtol(args,NULL,16)+i,1));
+		l+=sprintf(mem_buf+l,"%02x ",instr_fetch((unsigned)strtol(address,NULL,16)+i,1));
 	}
 	printf("%s\n",mem_buf);
 	return 0;
