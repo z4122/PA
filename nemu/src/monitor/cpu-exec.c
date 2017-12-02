@@ -25,7 +25,7 @@ void print_bin_instr(swaddr_t eip, int len) {
 	for(i = 0; i < len; i ++) {
 		l += sprintf(asm_buf + l, "%02x ", instr_fetch(eip + i, 1));//instr_fetch返回值是eip所在地址对应的数据
 	}
-	sprintf(asm_buf + l, "%*.s", 50 - (12 + 3 * len), "-");
+	sprintf(asm_buf + l, "%*.s", 50 - (12 + 3 * len), "aa");
 }
 
 /* This function will be called when an `int3' instruction is being executed. */
