@@ -41,6 +41,7 @@ static int cmd_help(char *args);
 
 static int cmd_step(char *args)
 {
+	cpu_exec(1);
 	return 0;
 }
 static int cmd_info(char *args)
