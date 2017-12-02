@@ -47,7 +47,7 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 	setjmp(jbuf);
-
+    printf("n初始值:%d\n",n);
 	for(; n > 0; n --) {
 #ifdef DEBUG
 		swaddr_t eip_temp = cpu.eip;
@@ -56,6 +56,8 @@ void cpu_exec(volatile uint32_t n) {
 			fputc('.', stderr);
 		}
 #endif
+		printf("n的值为：%d\n",n);
+
 
 		/* Execute one instruction, including instruction fetch,
 		 * instruction decode, and the actual execution. */
@@ -69,6 +71,7 @@ void cpu_exec(volatile uint32_t n) {
 		Log_write("%s\n", asm_buf);
 		if(n_temp < MAX_INSTR_TO_PRINT) {
 			printf("%s\n", asm_buf);
+
 		}
 #endif
 
