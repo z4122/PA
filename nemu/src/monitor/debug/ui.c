@@ -72,6 +72,8 @@ static int cmd_dump_mem(char *args)
 
 	for(int i = 0;i<atoi(num);i++)
 	{
+		//strtol把字符串中的值改为16进制
+		//instr_fetch读取地址中的保存的值
 		l+=sprintf(mem_buf+l,"%02x ",instr_fetch((unsigned)strtol(address,NULL,16)+i,1));
 	}
 	printf("%s\n",mem_buf);
