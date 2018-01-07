@@ -108,7 +108,7 @@ static bool make_token(char *e) {
 int eval(Token tok[],int start,int end)
 {
 	int a = 0,b = 0,len = 0;
-	len = end-start;
+   	len = end-start; 
 	if(len == 0) return atoi(&tok[start].str);
 	
 	for(int i = end;i>start;i--)
@@ -124,13 +124,26 @@ int eval(Token tok[],int start,int end)
 			case MINUS: return a-b; break;
 			default : break;
 		}
-	}	
+	}
+
+	for(int i = end;i>start;i--)
+	{
+
+		if(tok[i].type == MULTIPLE || tok[i].type == DIVIDE)
+		{
+			a = eval(tok,start,i-1);
+			b = eval(tok,i+1,end);
+	   	}
+		switch(tok[i].type)
+		{
+			case MULTIPLE:  return a*b; break;
+			case DIVIDE:    return a/b; break;
+			default :	break; 
+	
+	   	} 
+	}
 	return 0;
 }
-
-
-
-
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
