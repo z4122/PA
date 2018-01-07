@@ -113,12 +113,12 @@ int eval(Token tok[],int start,int end)
 	len = end-start;
 	if(len == 0) return atoi(&tok[0].str);
 	
-	for(int i = 0;i<len;i++)
+	for(int i = start;i<end;i++)
 	{
 		if(tok[i].type == PLUS)
 		{
-			a = eval(&tok[start],start,i-1);
-			b = eval(&tok[i+1],i+1,end);
+			a = eval(tok,start,i-1);
+			b = eval(tok,i+1,end);
 		}
 		switch(tok[i].type)
 		{
