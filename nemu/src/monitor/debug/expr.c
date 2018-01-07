@@ -25,7 +25,7 @@ static struct rule {
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
-	{"\\w", NUMBER}					// number
+	{"\\d+", NUMBER}					// number
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) ) //N个不同的操作符
