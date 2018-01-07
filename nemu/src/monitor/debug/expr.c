@@ -5,9 +5,10 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <stdlib.h>
 
 enum {
-	NOTYPE = 256, EQ,NUMBER
+	NOTYPE = 256, EQ,NUMBER,PLUS
 
 	/* TODO: Add more token types */
 
@@ -23,7 +24,7 @@ static struct rule {
 	 */
 
 	{" +",	NOTYPE},				// spaces
-	{"\\+", '+'},					// plus
+	{"\\+", PLUS},					// plus
 	{"==", EQ},						// equal
 	{"\\w", NUMBER}					// number
 };
@@ -51,7 +52,7 @@ void init_regex() {
 
 typedef struct token {
 	int type;
-	char str[32];
+	char str;
 } Token;
 
 Token tokens[32];
@@ -64,7 +65,7 @@ static bool make_token(char *e) {
 	
 	nr_token = 0;
 
-	//	int j = 0;	
+	int j = 0;	
 
 
 	while(e[position] != '\0') {
@@ -82,16 +83,16 @@ static bool make_token(char *e) {
 				 * to record the token in the array ``tokens''. For certain 
 				 * types of tokens, some extra actions should be performed.
 				 */
-				/*
+				
 				switch(rules[i].token_type) 
 				{
-					case NOTYPE :tokens[j].type = NOTYPE;tokens[j].str = substr_start; break; 
-					case '+' :   tokens[j].type = NUMBER;tokens[j].str = *substr_start;
-								 tokens[j+1].type = PLUS;tokens[j+1].str = *substr_start;break;
-
+					case NOTYPE :tokens[j].type = NOTYPE;tokens[j].str = *substr_start; break; 
+					case EQ     :tokens[j].type = NUMBER;tokens[j].str = *substr_start; break;
+					case PLUS   :tokens[j].type = PLUS  ;tokens[j].str = *substr_start; break;
+					case NUMBER :tokens[j].type = NUMBER;tokens[j].str = *substr_start; break;
 					default: panic("please implement me");
 				}
-				*/
+				j++;
 				break;
 				
 			}
@@ -106,14 +107,31 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+int eval(Token *tokens,int len)
+{
+
+	for(int i = 0;i<len;i++)
+	{
+		switch(tokens[1].type)
+		{
+			case PLUS: return (atoi(&tokens[0].str)+atoi(&tokens[2].str));
+		}
+	}	
+	return 0;
+}
+
+
+
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
 	}
-
+	
+    printf("%d",eval(tokens,strlen(e)));
 	/* TODO: Insert codes to evaluate the expression. */
-	panic("please implement me");
+
 	return 0;
 }
 
