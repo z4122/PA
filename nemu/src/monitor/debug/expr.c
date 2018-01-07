@@ -87,14 +87,9 @@ static bool make_token(char *e) {
 				 * types of tokens, some extra actions should be performed.
 				 */
 				
-				switch(rules[i].token_type) 
-				{
-					case NOTYPE :tokens[j].type = NOTYPE;tokens[j].str = *substr_start; break; 
-					case EQ     :tokens[j].type = NUMBER;tokens[j].str = *substr_start; break;
-					case PLUS   :tokens[j].type = PLUS  ;tokens[j].str = *substr_start; break;
-					case NUMBER :tokens[j].type = NUMBER;tokens[j].str = *substr_start; break;
-					default: panic("please implement me");
-				}
+				tokens[j].type = rules[i].token_type;
+				tokens[j].str  = *substr_start;	
+
 				j++;
 				break;
 				
