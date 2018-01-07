@@ -119,6 +119,7 @@ int eval(Token tok[],int start,int end)
 		{
 			a = eval(tok,start,i-1);
 			b = eval(tok,i+1,end);
+			printf("%d,%d\n",a,b);
 		}
 		switch(tok[i].type)
 		{
