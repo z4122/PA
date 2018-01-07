@@ -111,7 +111,7 @@ int eval(Token tok[],int start,int end)
 {
 	int a = 0,b = 0,len = 0;
 	len = end-start;
-	if(len == 1) return atoi(&tok[0].str);
+	if(len == 0) return atoi(&tok[0].str);
 	
 	for(int i = 0;i<len;i++)
 	{
@@ -137,7 +137,7 @@ uint32_t expr(char *e, bool *success) {
 		return 0;
 	}
 	
-    printf("%d",eval(tokens,0,strlen(e)-1));
+    printf("%d\n",eval(tokens,0,strlen(e)-1));
 	/* TODO: Insert codes to evaluate the expression. */
 
 	return 0;
