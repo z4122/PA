@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ
+	NOTYPE = 256, EQ,NUMBER
 
 	/* TODO: Add more token types */
 
@@ -24,10 +24,11 @@ static struct rule {
 
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
-	{"==", EQ}						// equal
+	{"==", EQ},						// equal
+	{"\\d", NUMBER}					// number
 };
 
-#define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
+#define NR_REGEX (sizeof(rules) / sizeof(rules[0]) ) //N个不同的操作符
 
 static regex_t re[NR_REGEX];
 
@@ -63,6 +64,9 @@ static bool make_token(char *e) {
 	
 	nr_token = 0;
 
+	//	int j = 0;	
+
+
 	while(e[position] != '\0') {
 		/* Try all rules one by one. */
 		for(i = 0; i < NR_REGEX; i ++) {
@@ -73,16 +77,23 @@ static bool make_token(char *e) {
 				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
 				position += substr_len;
 
+				printf("%c",*substr_start);
 				/* TODO: Now a new token is recognized with rules[i]. Add codes
 				 * to record the token in the array ``tokens''. For certain 
 				 * types of tokens, some extra actions should be performed.
 				 */
+				/*
+				switch(rules[i].token_type) 
+				{
+					case NOTYPE :tokens[j].type = NOTYPE;tokens[j].str = substr_start; break; 
+					case '+' :   tokens[j].type = NUMBER;tokens[j].str = *substr_start;
+								 tokens[j+1].type = PLUS;tokens[j+1].str = *substr_start;break;
 
-				switch(rules[i].token_type) {
 					default: panic("please implement me");
 				}
 
 				break;
+				*/
 			}
 		}
 

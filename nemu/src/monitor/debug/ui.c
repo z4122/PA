@@ -80,6 +80,11 @@ static int cmd_dump_mem(char *args)
 	return 0;
 }
 
+static int cmd_exp(char *args)
+{
+	
+	return 0;	
+}
 
 static struct {
 	char *name;
@@ -94,6 +99,7 @@ static struct {
 	{ "s","Signal step", cmd_step},
 	{ "info","Dump information with option:r(registers)",cmd_info},
 	{ "x","Dump memory:x length addr",cmd_dump_mem},
+	{ "p","Expression evalution",cmd_exp}
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
