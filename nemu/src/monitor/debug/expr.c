@@ -111,7 +111,7 @@ int eval(Token tok[],int start,int end)
 	len = end-start;
 	if(len == 0) return atoi(&tok[start].str);
 	
-	for(int i = start;i<end;i++)
+	for(int i = end;i>start;i--)
 	{
 		if(tok[i].type == PLUS || tok[i].type == MINUS)
 		{
