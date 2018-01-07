@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 enum {
-	NOTYPE = 256, EQ,NUMBER,PLUS
+	NOTYPE = 256, EQ,NUMBER,PLUS,MINUS,MULTIPLE,DIVIDE
 
 	/* TODO: Add more token types */
 
@@ -25,6 +25,9 @@ static struct rule {
 
 	{" +",	NOTYPE},				// spaces
 	{"\\+", PLUS},					// plus
+	{"\\-", MINUS},                 // MINUS
+	{"\\*", MULTIPLE},				// multiple
+	{"\\/", DIVIDE},				// divide
 	{"==", EQ},						// equal
 	{"\\w", NUMBER}					// number
 };
@@ -115,15 +118,15 @@ int eval(Token tok[],int start,int end)
 	
 	for(int i = start;i<end;i++)
 	{
-		if(tok[i].type == PLUS)
+		if(tok[i].type == PLUS || tok[i].type == MINUS)
 		{
 			a = eval(tok,start,i-1);
 			b = eval(tok,i+1,end);
-			printf("%d,%d\n",a,b);
 		}
 		switch(tok[i].type)
 		{
-			case PLUS: return a+b; break;
+			case PLUS:  return a+b; break;
+			case MINUS: return a-b; break;
 			default : break;
 		}
 	}	
