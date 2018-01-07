@@ -122,7 +122,8 @@ int eval(Token tok[],int start,int end)
 		}
 		switch(tok[i].type)
 		{
-			case PLUS: return a+b;
+			case PLUS: return a+b; break;
+			default : break;
 		}
 	}	
 	return 0;
