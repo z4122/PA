@@ -107,14 +107,22 @@ static bool make_token(char *e) {
 	return true; 
 }
 
-int eval(Token *tokens,int len)
+int eval(Token tok[],int start,int end)
 {
-
+	int a = 0,b = 0,len = 0;
+	len = end-start;
+	if(len == 1) return atoi(&tok[0].str);
+	
 	for(int i = 0;i<len;i++)
 	{
-		switch(tokens[1].type)
+		if(tok[i].type == PLUS)
 		{
-			case PLUS: return (atoi(&tokens[0].str)+atoi(&tokens[2].str));
+			a = eval(&tok[start],start,i-1);
+			b = eval(&tok[i+1],i+1,end);
+		}
+		switch(tok[i].type)
+		{
+			case PLUS: return a+b;
 		}
 	}	
 	return 0;
@@ -129,7 +137,7 @@ uint32_t expr(char *e, bool *success) {
 		return 0;
 	}
 	
-    printf("%d",eval(tokens,strlen(e)));
+    printf("%d",eval(tokens,0,strlen(e)-1));
 	/* TODO: Insert codes to evaluate the expression. */
 
 	return 0;
