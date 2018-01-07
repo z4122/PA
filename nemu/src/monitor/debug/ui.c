@@ -82,7 +82,8 @@ static int cmd_dump_mem(char *args)
 
 static int cmd_exp(char *args)
 {
-	
+	bool success = 0;
+	expr(args,&success);
 	return 0;	
 }
 
