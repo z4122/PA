@@ -100,7 +100,7 @@ static struct {
 	{ "s","Signal step", cmd_step},
 	{ "info","Dump information with option:r(registers)",cmd_info},
 	{ "x","Dump memory:x length addr",cmd_dump_mem},
-	{ "p","EExpression evalution",cmd_exp}
+	{ "p","Expression evalution",cmd_exp}
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
