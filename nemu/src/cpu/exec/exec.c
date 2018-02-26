@@ -154,7 +154,7 @@ helper_fun opcode_table [256] = {
 /* 0xdc */	inv, inv, inv, inv,
 /* 0xe0 */	inv, inv, inv, inv,
 /* 0xe4 */	inv, inv, inv, inv,
-/* 0xe8 */	inv, inv, inv, inv,
+/* 0xe8 */	call_i2m_l, inv, inv, inv,
 /* 0xec */	inv, inv, inv, inv,
 /* 0xf0 */	inv, inv, inv, inv,
 /* 0xf4 */	inv, inv, group3_b, group3_v,
@@ -234,7 +234,15 @@ make_helper(exec) {
 	ops_decoded.opcode = instr_fetch(eip, 1);
 	return opcode_table[ ops_decoded.opcode ](eip);
 }
+make_helper(call_i2m_l)
+{
+    
+    op_src->type = OP_TYPE_IMM;
+    op_src->imm = instr_fetch(eip,4);
+    eip = op_src->imm;
 
+    return 0; 
+}
 static make_helper(_2byte_esc) {
 	eip ++;
 	uint32_t opcode = instr_fetch(eip, 1);
