@@ -55,6 +55,7 @@ static int cmd_info(char *args)
 			{
 				printf("%s:0x%08x\n",regsl[i],cpu.gpr[i]._32);
 			};
+            printf("EIP:0x%08x\n",cpu.eip);
 			return 0;
 		default: return 1;
 	}
