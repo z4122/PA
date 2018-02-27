@@ -24,10 +24,36 @@ typedef union {
 
 	/* Do NOT change the order of the GPRs' definitions. */
 
-	struct
+    struct 
    	{
 		uint32_t  eax,ecx,edx,ebx,esp,ebp,esi,edi;
 		swaddr_t eip;
+        struct 
+        {
+            int cf:1;
+            int n_1:1;
+            int pf:1;
+            int n_3:1;
+            int af:1;
+            int n_5:1;
+            int zf:1;
+            int sf:1;
+            int tf:1;
+            int If:1;
+            int df:1;
+            int of:1;
+            int iopl:2;
+            int nt:1;
+            int n_15:1;
+            int rf:1;
+            int vm:1;
+            int ac:1;
+            int vif:1;
+            int vip:1;
+            int td:1;
+            int n_22:2;//According to grammer,2 is needed
+            int n_24:8;
+        }eflags;
 	};
 
 } CPU_state;
@@ -46,5 +72,7 @@ static inline int check_reg_index(int index) {
 extern const char* regsl[];
 extern const char* regsw[];
 extern const char* regsb[];
+
+void init_eflags();
 
 #endif

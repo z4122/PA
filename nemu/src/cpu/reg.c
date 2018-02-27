@@ -41,4 +41,7 @@ void reg_test() {
 
 	assert(eip_sample == cpu.eip);
 }
-
+void init_eflags()
+{
+    cpu.eflags.n_1 = 1;
+}
