@@ -241,7 +241,7 @@ make_helper(call_i2m_l)
     op_src->imm = instr_fetch(eip,4);
     op_src->imm = 0x100012;
     printf("%08x",op_src->imm);
-    eip = op_src->imm;
+    cpu.eip = op_src->imm;
 
     return 0; 
 }
