@@ -32,7 +32,7 @@ make_group(group1_v,
 /* 0x83 */
 make_group(group1_sx_v,
 	inv, inv, inv, inv, 
-	sub_r_i, inv, inv, inv)
+	sub_r_i, sub_r_i, inv, inv)
 
 /* 0xc0 */
 make_group(group2_i_b,
