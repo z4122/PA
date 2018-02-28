@@ -30,29 +30,29 @@ typedef union {
 		swaddr_t eip;
         struct 
         {
-            int cf:1;
-            int n_1:1;
-            int pf:1;
-            int n_3:1;
-            int af:1;
-            int n_5:1;
-            int zf:1;
-            int sf:1;
-            int tf:1;
-            int If:1;
-            int df:1;
-            int of:1;
-            int iopl:2;
-            int nt:1;
-            int n_15:1;
-            int rf:1;
-            int vm:1;
-            int ac:1;
-            int vif:1;
-            int vip:1;
-            int td:1;
-            int n_22:2;//According to grammer,2 is needed
-            int n_24:8;
+            uint32_t cf:1;
+            uint32_t n_1:1;
+            uint32_t pf:1;
+            uint32_t n_3:1;
+            uint32_t af:1;
+            uint32_t n_5:1;
+            uint32_t zf:1;
+            uint32_t sf:1;
+            uint32_t tf:1;
+            uint32_t If:1;
+            uint32_t df:1;
+            uint32_t of:1;
+            uint32_t iopl:2;
+            uint32_t nt:1;
+            uint32_t n_15:1;
+            uint32_t rf:1;
+            uint32_t vm:1;
+            uint32_t ac:1;
+            uint32_t vif:1;
+            uint32_t vip:1;
+            uint32_t td:1;
+            uint32_t n_22:2;//According to grammer,2 is needed
+            uint32_t n_24:8;
         }eflags;
 	};
 
