@@ -11,14 +11,14 @@ static void do_execute()
     
 }
 
-make_helper(call_i2m_l)
-{    
-    op_src->type = OP_TYPE_IMM;
-    op_src->imm = instr_fetch(eip,DATA_BYTE);
-    eip = op_src->imm;
+//make_helper(call_i2m_l)
+//{    
+//    op_src->type = OP_TYPE_IMM;
+//    op_src->imm = instr_fetch(eip,DATA_BYTE);
+//    eip = op_src->imm;
 
-    return 0; 
-}
+//    return 0; 
+//}
 
 
 
