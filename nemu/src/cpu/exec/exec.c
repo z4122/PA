@@ -32,7 +32,7 @@ make_group(group1_v,
 /* 0x83 */
 make_group(group1_sx_v,
 	inv, inv, inv, inv, 
-	inv, inv, inv, inv)
+	sub_r_i, inv, inv, inv)
 
 /* 0xc0 */
 make_group(group2_i_b,
@@ -242,6 +242,11 @@ make_helper(call_i2m_l)
     eip = op_src->imm;
 
     return 0; 
+}
+
+make_helper(sub_r_i)
+{
+    return 0;
 }
 static make_helper(_2byte_esc) {
 	eip ++;
