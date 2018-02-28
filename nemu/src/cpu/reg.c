@@ -44,6 +44,8 @@ void reg_test() {
 void init_eflags()
 {
     cpu.eflags.n_1 = 1;
-    printf("eflags:%p\n",&cpu.eflags);
+    uint32_t *add =(uint32_t *)&cpu.eflags;
+    uint32_t temp = *add;
+    printf("eflags:%08x\n",temp);
     printf("eflags:%d\n",cpu.eflags.cf);
 }
