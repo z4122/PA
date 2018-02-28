@@ -258,7 +258,7 @@ make_helper(sub_r_i)
 make_helper(push_ebp)
 {
  //   uint32_t temp = cpu.ebp;
-    *((uint32_t *)&cpu.esp) = cpu.ebp;
+    *((uint32_t *)cpu.esp) = cpu.ebp;
     cpu.esp -= 0x100;
     return 1;
 }
