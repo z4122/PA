@@ -246,6 +246,8 @@ make_helper(call_i2m_l)
 
 make_helper(sub_r_i)
 {
+    op_src->imm = instr_fetch(eip+2,1);
+
     return 0;
 }
 static make_helper(_2byte_esc) {
